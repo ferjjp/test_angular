@@ -27,6 +27,9 @@ angular.module('todoAppApp')
       if(task.isNew()) {
         throw 'cannot update a new task';
       }
+      if(!task.isDirty()) {
+        throw 'cannot update a non-dirty task';
+      }
       store(task);
     };
 

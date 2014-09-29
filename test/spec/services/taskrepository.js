@@ -82,6 +82,13 @@ describe('Service: taskRepository', function () {
     expect(update).toThrow('cannot update a new task');
   });
 
+  it('should throw an exception when a not dirty task is updated', function () {
+    var newText = 'texto editado';
+    savedTask.text = newText;
+    var update = function() { taskRepository.update(savedTask); };
+    expect(update).toThrow('cannot update a non-dirty task');
+  });
+
   it('can delete a task', function () {
     taskRepository.delete(savedTask);
     expect(taskRepository.get().length).toBe(0);
