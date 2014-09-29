@@ -28,6 +28,7 @@ module.exports = function(config) {
       'app/bower_components/angular-local-storage/angular-local-storage.js',
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/scripts/**/*.js',
+      'test/spec/setup.js',
       'test/spec/**/*.js',
     ],
 

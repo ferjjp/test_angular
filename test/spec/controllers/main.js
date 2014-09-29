@@ -2,9 +2,6 @@
 
 describe('Controller: MainCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('todoAppApp'));
-
   var MainCtrl, scope;
 
   // Initialize the controller and a mock scope

@@ -2,9 +2,6 @@
 
 describe('Service: Task', function () {
 
-  // load the service's module
-  beforeEach(module('todoAppApp'));
-
   // instantiate service
   var task;
   beforeEach(inject(function (_Task_) {
