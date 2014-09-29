@@ -18,6 +18,9 @@ describe('Service: taskRepository', function () {
         },
         set: function(key, value) {
           storage[key] = JSON.stringify(value);
+        },
+        remove: function(key){
+          delete storage[key];
         }
       };
 
@@ -117,6 +120,13 @@ describe('Service: taskRepository', function () {
   it('should throw an exception when a new task is deleted', function () {
     var deleteFn = function() { taskRepository.delete(new Task({text: 'nueva tarea'})); };
     expect(deleteFn).toThrow('cannot delete a new task');
+  });
+
+  it('should reset all counters when resetCounters is called', function () {
+    var newTask = new Task({text: 'soy una nueva tarea'});
+    taskRepository.add(newTask);
+    taskRepository.resetCounters();
+    expect(taskRepository.createdCount()).toBe(0);
   });
 
 });

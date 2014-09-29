@@ -20,6 +20,10 @@ angular.module('todoAppApp')
       localStorageService.set(key, counter);
     };
 
+    var resetCounter = function(key){
+      localStorageService.remove(key);
+    };
+
     this.get = function(){
       return _.values(tasks).map(function(json){
         return new Task(json);
@@ -64,5 +68,11 @@ angular.module('todoAppApp')
 
     this.deletedCount = function(){
       return getCounter('deleted');
+    };
+
+    this.resetCounters = function(){
+      resetCounter('created');
+      resetCounter('updated');
+      resetCounter('deleted');
     };
   });
