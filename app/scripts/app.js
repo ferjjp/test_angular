@@ -5,7 +5,8 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -16,4 +17,10 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function (localStorageService) {
+    if(!localStorageService.get('tasks')){
+      localStorageService.set('tasks',[]);
+    }
   });
+

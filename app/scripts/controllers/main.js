@@ -1,10 +1,6 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope,localStorageService) {
+    $scope.tasks = localStorageService.get('tasks');
   });
