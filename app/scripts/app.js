@@ -17,10 +17,5 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .run(function (localStorageService) {
-    if(!localStorageService.get('tasks')){
-      localStorageService.set('tasks',[]);
-    }
   });
 

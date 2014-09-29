@@ -26,6 +26,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-local-storage/angular-local-storage.js',
+      'app/bower_components/lodash/dist/lodash.compat.js',
       'app/scripts/**/*.js',
       'test/spec/**/*.js',
     ],

@@ -8,15 +8,15 @@ describe('Controller: MainCtrl', function () {
   var MainCtrl, scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, localStorageService) {
+  beforeEach(inject(function ($controller, $rootScope,taskRepository) {
     scope = $rootScope.$new();
 
-    var savedTasks = [{text: 'resolver este ejercicio', date: '2014-09-29T13:03:06.030Z'}];
-    spyOn(localStorageService, 'get').andReturn(savedTasks);
+    var savedTasks = [{id: 1, text: 'resolver este ejercicio', date: '2014-09-29T13:03:06.030Z'}];
+    spyOn(taskRepository, 'get').andReturn(savedTasks);
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
-      localStorageService: localStorageService
+      taskRepository: taskRepository
     });
   }));
 
