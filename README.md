@@ -1,4 +1,4 @@
-todoApp
+ToDoApp
 =======
 
 ### Introducción
@@ -9,16 +9,19 @@ Luego de analizar a la competencia y hacer muchas pruebas con prototipos, el equ
 
 ### Objetivo
 
-1 - Identificar al menos un problema de diseño y corregirlo.
-2 - Desarrollar los tests faltantes.
-3 - Por el momento esta aplicación cuenta con un único plan básico que es ilimitado. El desarrollador anterior llegó a implementar una serie de contadores que van registrando cada vez que se crea, edita o elimina una tarea. Se pide agregarle el plan gratuito y el plan premium y establecer límites para los diferentes planes.
-    El plan gratuito permite un máximo de 20 creaciones + editaciones, y no más de 5 eliminaciones.
-    El plan básico permite hasta 50 creaciones, hasta 50 ediciones y hasta 50 eliminaciones.
-    El plan premium el ilimitado.
-    
-    La aplicación no debería permitirle al usuario guardar los cambios si se excede de los límites del plan seleccionado. En ese caso deberá seleccionar un plan superior para poder guardar los cambios.
+1. Identificar al menos un problema de diseño y corregirlo.
+2. Desarrollar los tests faltantes.
+3. Por el momento esta aplicación cuenta con un único plan básico que es ilimitado. El desarrollador anterior llegó a implementar una serie de contadores que van registrando cada vez que se crea, edita o elimina una tarea. Se pide agregarle el plan gratuito y el plan premium y establecer límites para los diferentes planes.
 
-#Restricciones
+ **El plan gratuito** permite un máximo de 20 creaciones + editaciones, y no más de 5 eliminaciones.
+ 
+ **El plan básico** permite hasta 50 creaciones, hasta 50 ediciones y hasta 50 eliminaciones.
+ 
+ **El plan premium** el ilimitado.
+
+ La aplicación no debería permitirle al usuario guardar los cambios si se excede de los límites del plan seleccionado. En ese caso deberá seleccionar un plan superior para poder guardar los cambios.
+
+####Restricciones
   No se puede modificar el `taskRepository`
 
 ### Tecnologías
