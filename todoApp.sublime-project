@@ -3,8 +3,7 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": [".*", "app/bower_components", "node_modules", "lib", "public", "aws", "dist"],
-            "file_exclude_patterns": [".*"]
+            "folder_exclude_patterns": [".*", "app/bower_components", "node_modules", "lib", "public", "aws", "dist"]
         }
     ]
 }

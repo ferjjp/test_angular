@@ -36,7 +36,7 @@ describe('Service: taskRepository', function () {
   });
 
 
-  describe("when add is called", function(){
+  describe('when add is called', function(){
     var newTask;
 
     beforeEach(function(){
@@ -58,7 +58,7 @@ describe('Service: taskRepository', function () {
 
   });
 
-  describe("when update is called", function(){
+  describe('when update is called', function(){
     var newText;
 
     beforeEach(function(){
@@ -79,7 +79,7 @@ describe('Service: taskRepository', function () {
 
   it('should throw an exception when a new task is updated', function () {
     var update = function() { taskRepository.update(new Task({text: 'nueva tarea'})); };
-    expect(update).toThrow("cannot update a new task");
+    expect(update).toThrow('cannot update a new task');
   });
 
   it('can delete a task', function () {
@@ -89,7 +89,7 @@ describe('Service: taskRepository', function () {
 
   it('should throw an exception when a new task is deleted', function () {
     var deleteFn = function() { taskRepository.delete(new Task({text: 'nueva tarea'})); };
-    expect(deleteFn).toThrow("cannot delete a new task");
+    expect(deleteFn).toThrow('cannot delete a new task');
   });
 
 });
