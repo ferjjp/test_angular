@@ -7,14 +7,17 @@ describe('Service: taskRepository', function () {
   beforeEach(function(){
     module(function ($provide){
 
-      var allTasks = JSON.stringify({1: {id: 1, text: 'resolver este ejercicio', date: '2014-09-29T13:03:06.030Z'}});
+      var storage = {tasks: JSON.stringify({1: {id: 1, text: 'resolver este ejercicio', date: '2014-09-29T13:03:06.030Z'}})};
 
       var mockedLocalStorage = {
-        get: function(){
-          return JSON.parse(allTasks);
+        get: function(key){
+          var string = storage[key];
+          if(string){
+            return JSON.parse(string);
+          }
         },
-        set: function(value) {
-          allTasks = JSON.stringify(value);
+        set: function(key, value) {
+          storage[key] = JSON.stringify(value);
         }
       };
 
@@ -56,6 +59,10 @@ describe('Service: taskRepository', function () {
       expect(newTask.isDirty()).toBeFalsy();
     });
 
+    it('should increase the created counter', function () {
+      expect(taskRepository.createdCount()).toBe(1);
+    });
+
   });
 
   describe('when update is called', function(){
@@ -75,6 +82,10 @@ describe('Service: taskRepository', function () {
     it('should set the task as pristine', function () {
       expect(savedTask.isDirty()).toBeFalsy();
     });
+
+    it('should increase the updated counter', function () {
+      expect(taskRepository.updatedCount()).toBe(1);
+    });
   });
 
   it('should throw an exception when a new task is updated', function () {
@@ -89,9 +100,18 @@ describe('Service: taskRepository', function () {
     expect(update).toThrow('cannot update a non-dirty task');
   });
 
-  it('can delete a task', function () {
-    taskRepository.delete(savedTask);
-    expect(taskRepository.get().length).toBe(0);
+  describe('when delete is called', function(){
+    beforeEach(function(){
+      taskRepository.delete(savedTask);
+    });
+
+    it('should remove the task', function () {
+      expect(taskRepository.get().length).toBe(0);
+    });
+
+    it('should increase the deleted counter', function () {
+      expect(taskRepository.deletedCount()).toBe(1);
+    });
   });
 
   it('should throw an exception when a new task is deleted', function () {

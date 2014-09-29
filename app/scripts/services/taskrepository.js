@@ -10,6 +10,16 @@ angular.module('todoAppApp')
       localStorageService.set('tasks',tasks);
     };
 
+    var getCounter = function(key){
+      return localStorageService.get(key) || 0;
+    };
+
+    var increaseCounter = function(key){
+      var counter = parseInt(getCounter(key));
+      counter += 1;
+      localStorageService.set(key, counter);
+    };
+
     this.get = function(){
       return _.values(tasks).map(function(json){
         return new Task(json);
@@ -21,6 +31,7 @@ angular.module('todoAppApp')
       var nextId = last === undefined ? 1 : last.id + 1;
       task.id = nextId;
       store(task);
+      increaseCounter('created');
     };
 
     this.update = function(task){
@@ -31,6 +42,7 @@ angular.module('todoAppApp')
         throw 'cannot update a non-dirty task';
       }
       store(task);
+      increaseCounter('updated');
     };
 
     this.delete = function(task){
@@ -39,6 +51,18 @@ angular.module('todoAppApp')
       }
       delete tasks[task.id];
       localStorageService.set('tasks',tasks);
+      increaseCounter('deleted');
     };
 
+    this.createdCount = function(){
+      return getCounter('created');
+    };
+
+    this.updatedCount = function(){
+      return getCounter('updated');
+    };
+
+    this.deletedCount = function(){
+      return getCounter('deleted');
+    };
   });
