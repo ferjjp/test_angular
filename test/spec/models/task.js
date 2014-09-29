@@ -3,7 +3,7 @@
 describe('Service: Task', function () {
 
   // instantiate service
-  var task;
+  var Task;
   beforeEach(inject(function (_Task_) {
     Task = _Task_;
   }));
@@ -24,10 +24,16 @@ describe('Service: Task', function () {
     expect(new Task({id: 12}).isDirty()).toBeFalsy();
   });
 
-  it('shuold be set as dirty when setAsDirty is called', function () {
+  it('should be set as dirty when setAsDirty is called', function () {
     var existingTask = new Task({id: 12});
     existingTask.setAsDirty();
     expect(existingTask.isDirty()).toBeTruthy();
+  });
+
+  it('should be set toBeDeleted when setToBeDeleted is called', function () {
+    var task = new Task({id: 12});
+    task.setToBeDeleted();
+    expect(task.toBeDeleted).toBeTruthy();
   });
 
 });

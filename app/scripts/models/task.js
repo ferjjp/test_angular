@@ -4,7 +4,7 @@ function Task(json) {
   _.extend(this, json);
 
   this.isNew = function() {
-    return this.id == undefined;
+    return this.id === undefined;
   };
 
   this.isDirty = function() {
@@ -19,7 +19,11 @@ function Task(json) {
     delete this.dirty;
   };
 
-};
+  this.setToBeDeleted = function() {
+    this.toBeDeleted = true;
+  };
+
+}
 
 
 angular.module('todoAppApp')
