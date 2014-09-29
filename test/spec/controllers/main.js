@@ -24,4 +24,9 @@ describe('Controller: MainCtrl', function () {
     expect(scope.tasks.length).toBe(1);
   });
 
+  it('should add a task on dirty state when addTask is called', function () {
+    var newTask = scope.addTask();
+    expect(scope.tasks.length).toBe(2);
+    expect(newTask.isDirty).toBeTruthy();
+  });
 });
