@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .service('taskRepository', function TaskRepository(localStorageService) {
+  .service('taskRepository', function TaskRepository(localStorageService, Task) {
     var tasks = localStorageService.get('tasks') || {};
 
     this.get = function(){
-      return _.values(tasks);
+      return _.values(tasks).map(function(json){
+        return new Task(json);
+      });
     };
 
     this.add = function(task){
@@ -17,7 +19,7 @@ angular.module('todoAppApp')
     };
 
     this.update = function(task){
-      if(!task.id) {
+      if(task.isNew()) {
         throw 'cannot update a new task';
       }
       tasks[task.id] = task;
@@ -25,7 +27,7 @@ angular.module('todoAppApp')
     };
 
     this.delete = function(task){
-      if(!task.id) {
+      if(task.isNew()) {
         throw 'cannot delete a new task';
       }
       delete tasks[task.id];

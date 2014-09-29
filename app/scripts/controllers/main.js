@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .controller('MainCtrl', function ($scope,taskRepository) {
+  .controller('MainCtrl', function ($scope, taskRepository) {
 
     $scope.tasks = taskRepository.get();
 
