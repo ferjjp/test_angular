@@ -8,4 +8,12 @@ angular.module('todoAppApp')
       return _.values(tasks);
     };
 
+    this.add = function(task){
+      var last = _.max(tasks,'id');
+      var nextId = last === undefined ? 1 : last.id + 1;
+      task.id = nextId;
+      tasks[task.id] = task;
+      localStorageService.set('tasks',tasks);
+    };
+
   });
