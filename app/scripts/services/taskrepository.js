@@ -16,4 +16,12 @@ angular.module('todoAppApp')
       localStorageService.set('tasks',tasks);
     };
 
+    this.update = function(task){
+      if(!task.id) {
+        throw 'cannot update a new task';
+      }
+      tasks[task.id] = task;
+      localStorageService.set('tasks',tasks);
+    };
+
   });
