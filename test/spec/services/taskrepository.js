@@ -66,4 +66,14 @@ describe('Service: taskRepository', function () {
     expect(update).toThrow("cannot update a new task");
   });
 
+  it('can delete a task', function () {
+    taskRepository.delete(savedTask);
+    expect(taskRepository.get().length).toBe(0);
+  });
+
+  it('should throw an exception when a new task is deleted', function () {
+    var deleteFn = function() { taskRepository.delete({text: 'nueva tarea'}); };
+    expect(deleteFn).toThrow("cannot delete a new task");
+  });
+
 });

@@ -24,4 +24,12 @@ angular.module('todoAppApp')
       localStorageService.set('tasks',tasks);
     };
 
+    this.delete = function(task){
+      if(!task.id) {
+        throw 'cannot delete a new task';
+      }
+      delete tasks[task.id];
+      localStorageService.set('tasks',tasks);
+    };
+
   });
