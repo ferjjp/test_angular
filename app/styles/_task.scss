@@ -1,0 +1,21 @@
+.history {
+  margin-bottom: 30px;
+}
+.task {
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  .date {
+    margin: 8px 0;
+  }
+  .glyphicon {
+    margin-right: 12px;
+    cursor: pointer;
+  }
+}
+.add-task {
+  margin-bottom: 18px;
+}
+.save-button {
+  margin: 12px 0 30px;
+}
