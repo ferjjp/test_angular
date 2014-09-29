@@ -3,7 +3,7 @@ ToDoApp
 
 ### Introducción
 
-Esta aplicación es un típico ToDo donde se pueden crear, editar y eliminar tareas.
+Esta aplicación es un típico To-Do.
 Para persistir las tareas se usa el localStorage del browser, de forma que no se borren al refrescar la página.
 Luego de analizar a la competencia y hacer muchas pruebas con prototipos, el equipo de User Experience llegó a la conculusión que esta aplicación tiene que permitir al usario agregar tareas, editarlas y eliminarlas, pero que no se persistan los cambios hasta que se haga click en el botón guardar. En caso de que el usuario no quiera guardar los cambios, solo debe refrescar la página.
 
