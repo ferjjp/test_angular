@@ -27,10 +27,7 @@ Luego de analizar a la competencia y hacer muchas pruebas con prototipos, el equ
 ### Tecnologías
 
 - [AngularJs](https://angularjs.org/): MVW (Model-View-Whatever), resuelve concerns de vista, DI, comunicación con servidor, etc
-
-y las siguientes herramientas:
-
-- [Yeoman](http://yeoman.io/): responsable del scaffolding de la aplicación
+- [Lo-Dash](http://lodash.com/): librería de utilidades varias, sobre todo interesantes para trabajar con colecciones de forma funcional
 - [Grunt](http://gruntjs.com/): task runner para automatizar la tarea de levantar el servidor y refrescar ante un cambio en el código
 
 ### Cómo correr la aplicación y los tests?
