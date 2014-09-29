@@ -7,6 +7,18 @@ function Task(json) {
     return this.id == undefined;
   };
 
+  this.isDirty = function() {
+    return this.isNew() || this.dirty;
+  };
+
+  this.setAsDirty = function() {
+    this.dirty = true;
+  };
+
+  this.setAsPristine = function() {
+    delete this.dirty;
+  };
+
 };
 
 

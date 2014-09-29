@@ -16,4 +16,18 @@ describe('Service: Task', function () {
     expect(new Task({id: 12}).isNew()).toBeFalsy();
   });
 
+  it('a new Task should be dirty', function () {
+    expect(new Task().isDirty()).toBeTruthy();
+  });
+
+  it('an existing Task should not be dirty when is instantiated', function () {
+    expect(new Task({id: 12}).isDirty()).toBeFalsy();
+  });
+
+  it('shuold be set as dirty when setAsDirty is called', function () {
+    var existingTask = new Task({id: 12});
+    existingTask.setAsDirty();
+    expect(existingTask.isDirty()).toBeTruthy();
+  });
+
 });

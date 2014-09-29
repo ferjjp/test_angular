@@ -37,9 +37,10 @@ describe('Service: taskRepository', function () {
 
 
   describe("when add is called", function(){
+    var newTask;
 
     beforeEach(function(){
-      var newTask = new Task({text: 'soy una nueva tarea'});
+      newTask = new Task({text: 'soy una nueva tarea'});
       taskRepository.add(newTask);
     });
 
@@ -48,16 +49,32 @@ describe('Service: taskRepository', function () {
     });
 
     it('should set the following id to the new task when add is called', function () {
-      expect(taskRepository.get()[1].id).toBe(2);
+      expect(newTask.id).toBe(2);
+    });
+
+    it('should set the task as pristine', function () {
+      expect(newTask.isDirty()).toBeFalsy();
     });
 
   });
 
-  it('can update a task', function () {
-    var newText = 'texto editado';
-    savedTask.text = newText;
-    taskRepository.update(savedTask);
-    expect(taskRepository.get()[0].text).toBe(newText);
+  describe("when update is called", function(){
+    var newText;
+
+    beforeEach(function(){
+      newText = 'texto editado';
+      savedTask.text = newText;
+      savedTask.setAsDirty();
+      taskRepository.update(savedTask);
+    });
+
+    it('should save the task', function () {
+      expect(taskRepository.get()[0].text).toBe(newText);
+    });
+
+    it('should set the task as pristine', function () {
+      expect(savedTask.isDirty()).toBeFalsy();
+    });
   });
 
   it('should throw an exception when a new task is updated', function () {
