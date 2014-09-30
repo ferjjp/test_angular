@@ -31,8 +31,7 @@ angular.module('todoAppApp')
     };
 
     this.add = function(task){
-      var last = _.max(tasks,'id');
-      var nextId = last === undefined ? 1 : last.id + 1;
+      var nextId = _.isEmpty(tasks) ? 1 : _.max(tasks,'id').id + 1;
       task.id = nextId;
       store(task);
       increaseCounter('created');
