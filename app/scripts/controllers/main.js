@@ -12,9 +12,7 @@ angular.module('todoAppApp')
     };
     $scope.saveAll = function(){
       $scope.tasks.forEach(function(task){
-
         task.save(taskRepository);
-
       });
       $scope.tasks = taskRepository.get();
     };
@@ -23,6 +21,12 @@ angular.module('todoAppApp')
         return task.isDirty() || task.isDeleteable();
       });
     };
+
+    $scope.deleteAll = function() {
+      $scope.tasks.forEach(function(task){
+        task.setToBeDeleted();
+      });
+    }
 
 
     // Counters

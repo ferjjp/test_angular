@@ -9,7 +9,7 @@
 
 <form role="form" ng-submit="saveAll()">
   <div class="task row" ng-repeat="task in tasks | hideToBeDeleted">
-    <div class="col-md-10" ng-switch="!!task.isDirty()">
+    <div class="col-md-10" ng-switch="task.isDirty()">
       <input class="form-control" ng-model="task.text" ng-switch-when="true"/>
       <p class="form-control-static date" ng-switch-when="false">{{task.text}}</p>
     </div>
@@ -42,5 +42,8 @@
   </div>
   <p>
     <a href="" ng-click="resetCounters()" class="text-muted">reset</a>
+  <a href="" ng-click="deleteAll()">Temporary delete tasks</a>
   </p>
 </div>
+
+

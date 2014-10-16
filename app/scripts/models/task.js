@@ -2,6 +2,10 @@
 
 function TaskState_Normal() {
 
+  this.isNew = function() {
+  return false;
+}
+
     this.isDirty = function() {
       return false;
     }
@@ -11,11 +15,16 @@ function TaskState_Normal() {
   }
 
   this.save = function(taskRepository,task) {
-                  taskRepository.add(task);
+                
   }
+
 }
 
 function TaskState_Dirtied() {
+
+  this.isNew = function() {
+  return false;
+}
 
   this.isDirty = function() {
         return true;
@@ -32,8 +41,12 @@ function TaskState_Dirtied() {
 
 function TaskState_Deleteable() {
 
+  this.isNew = function() {
+  return false;
+}
+
   this.isDirty = function() {
-        return true;
+        return false;
   }
 
   this.isDeleteable = function() {
@@ -45,39 +58,60 @@ function TaskState_Deleteable() {
   }
 }
 
+function TaskState_New() {
+
+this.isNew = function() {
+  return true;
+}
+    this.isDirty = function() {
+        return false;
+  }
+
+  this.isDeleteable = function() {
+      return false;
+  }
+
+  this.save = function(taskRepository,task) {
+                 taskRepository.add(task);
+  }
+}
+
+
 function Task(json) {
   _.extend(this, json);
-
- var state = new TaskState_Normal();
-
-
+  //TODO Agregar logica distintiva al instanciar del repositorio
+  if(json.id) {
+      this.state = new TaskState_Normal();
+  } else {
+    this.state = new TaskState_New();
+  }
 
   this.isNew = function() {
-    return this.id  === undefined;
+   return this.state.isNew();
   };
 
   this.isDirty = function() {
-    return state.isDirty() || this.isNew();
+    return this.state.isDirty() || this.isNew();
   };
 
   this.setAsDirty = function() {
-    state = new TaskState_Dirtied();
+    this.state = new TaskState_Dirtied();
   };
 
   this.setAsPristine = function() {
-    state = new TaskState_Normal();
+    this.state = new TaskState_Normal();
   };
 
   this.setToBeDeleted = function() {
-    state = new TaskState_Deleteable();
+    this.state = new TaskState_Deleteable();
   };
 
   this.isDeleteable = function() {
-    return state.isDeleteable();
+    return this.state.isDeleteable();
   }
 
   this.save = function(taskRepository) {
-       state.save(taskRepository,this);
+       this.state.save(taskRepository,this);
   }
 
 }
