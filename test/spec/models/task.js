@@ -33,7 +33,7 @@ describe('Service: Task', function () {
   it('should be set toBeDeleted when setToBeDeleted is called', function () {
     var task = new Task({id: 12});
     task.setToBeDeleted();
-    expect(task.toBeDeleted).toBeTruthy();
+    expect(task.isDeleteable()).toBeTruthy();
   });
 
 });

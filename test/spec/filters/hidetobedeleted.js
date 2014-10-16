@@ -15,9 +15,10 @@ describe('Filter: hideToBeDeleted', function () {
   }));
 
   it('should return the task not to be deleted', function () {
-    var taskToBeDeleted = new Task({text: 'borrame', toBeDeleted: true});
+    var taskToBeDeleted = new Task({text: 'borrame'});
     var otherTask = new Task({text: 'tarea'});
     var tasks = [taskToBeDeleted, otherTask];
+    taskToBeDeleted.setToBeDeleted();
     expect(hideToBeDeleted(tasks)).toEqual([otherTask]);
   });
 
