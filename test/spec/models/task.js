@@ -4,8 +4,10 @@ describe('Service: Task', function () {
 
   // instantiate service
   var Task;
-  beforeEach(inject(function (_Task_) {
+  var taskRepository;
+  beforeEach(inject(function (_Task_,_taskRepository_) {
     Task = _Task_;
+    taskRepository = _taskRepository_;
   }));
 
   it('should return true when isNew is called on a task without id', function () {
@@ -35,5 +37,5 @@ describe('Service: Task', function () {
     task.setToBeDeleted();
     expect(task.isDeleteable()).toBeTruthy();
   });
-
+ 
 });

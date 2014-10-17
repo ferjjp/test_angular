@@ -17,3 +17,18 @@ function PlanType_Premium() {
 		return true;
 	}
 }
+
+angular.module('todoAppApp')
+  .factory('PlanType_Free', function(){
+    return PlanType_Free;
+  });
+
+  angular.module('todoAppApp')
+  .factory('PlanType_Basic', function(){
+    return PlanType_Basic;
+  });
+
+  angular.module('todoAppApp')
+  .factory('PlanType_Premium', function(){
+    return PlanType_Premium;
+  });
