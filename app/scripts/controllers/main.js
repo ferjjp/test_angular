@@ -5,17 +5,25 @@ angular.module('todoAppApp')
 
     // Task CRUD
     $scope.tasks = taskRepository.get();
+
     $scope.addTask = function(){
       var newTask = new Task({date: new Date().toISOString()});
       $scope.tasks.push(newTask);
       return newTask;
     };
+
+
     $scope.saveAll = function(){
-      $scope.tasks.forEach(function(task){
-        $scope.selectedPlan.save($window,task,taskRepository,$scope.getCountObject());
+      if($scope.selectedPlan.canSave($scope.getCountObject())) {
+        $scope.tasks.forEach(function(task){
+        task.save(taskRepository);
       });
+      } else {
+      $window.alert('Sorry, you cannot save your tasks. Upgrade your plan please' );    
+    } 
       $scope.tasks = taskRepository.get();
     };
+
     $scope.hasChanged = function(){
       return _.some($scope.tasks, function(task){
         return task.isDirty() || task.isDeleteable();

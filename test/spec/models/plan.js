@@ -1,22 +1,24 @@
 'use strict'
 
 describe("Plan", function() {
-	var $window;
+	var window_;
 	var Plan;
-	var Task;
+	var MainController;
+	var scope;
 
-	beforeEach(inject(function(_$window_,_Plan_,_Task_) {
-		$window = _$window_;
+
+	beforeEach(inject(function(_$window_,$controller,$rootScope,_Plan_) {
+		window_ = _$window_
 		Plan = _Plan_;
-		Task = _Task_;
+		scope = $rootScope.$new;
+		MainController = $controller('MainCtrl',{ $window: window_, $scope: scope});
 	}));
 
 it('can save is false, alert shows up', function(){
-	var type = jasmine.createSpyObj('type',['canSave']);
-	var plan = new Plan('test',type);
-	var task = jasmine.createSpyObj('task',['text']);
-	spyOn($window,'alert');
-	plan.save($window,task,null,null)
-	expect($window.alert).toHaveBeenCalled();
+	scope.selectedPlan = new Plan('asdasd',null);
+	spyOn(scope.selectedPlan,'canSave').andReturn(false);
+	spyOn(window_,'alert');
+	scope.saveAll()
+	expect(window_.alert).toHaveBeenCalled();
 });
 })
