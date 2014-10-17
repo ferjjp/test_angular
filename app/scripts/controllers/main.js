@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .controller('MainCtrl', function ($scope, taskRepository, Task, BasicPlan) {
+  .controller('MainCtrl', function ($scope,$window, taskRepository, Task, Plan) {
 
     // Task CRUD
     $scope.tasks = taskRepository.get();
@@ -12,7 +12,7 @@ angular.module('todoAppApp')
     };
     $scope.saveAll = function(){
       $scope.tasks.forEach(function(task){
-        task.save(taskRepository);
+        $scope.selectedPlan.save($window,task,taskRepository,$scope.getCountObject());
       });
       $scope.tasks = taskRepository.get();
     };
@@ -43,10 +43,19 @@ angular.module('todoAppApp')
       taskRepository.resetCounters();
     };
 
+    $scope.getCountObject = function() {
+      return {
+        'created': $scope.createdCount(),
+        'updated': $scope.updatedCount(),
+        'deleted': $scope.deletedCount()
+      }
+    }
 
     // Plans
-    var basicPlan = new BasicPlan();
-    $scope.plans = [basicPlan];
+    var basicPlan = new Plan('basicPlan',new PlanType_Basic());
+    var freePlan = new Plan('FreePlan', new PlanType_Free());
+    var premiumPlan = new Plan('PremiumPlan', new PlanType_Premium());
+    $scope.plans = [basicPlan,freePlan,premiumPlan];
     $scope.selectedPlan = basicPlan;
 
 

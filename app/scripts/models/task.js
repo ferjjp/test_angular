@@ -79,8 +79,7 @@ this.isNew = function() {
 
 function Task(json) {
   _.extend(this, json);
-  //TODO Agregar logica distintiva al instanciar del repositorio
-  if(json.id) {
+  if(this.id) {
       this.state = new TaskState_Normal();
   } else {
     this.state = new TaskState_New();
